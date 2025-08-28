@@ -278,7 +278,10 @@ class ThemeManager {
         // Add theme toggle listener
         const themeToggle = document.getElementById('themeToggle');
         if (themeToggle) {
-            themeToggle.addEventListener('click', () => this.toggleTheme());
+            themeToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.toggleTheme();
+            });
         }
     }
 
@@ -286,6 +289,8 @@ class ThemeManager {
         const body = document.body;
         const themeIcon = document.getElementById('themeIcon');
         const isDark = body.getAttribute('data-theme') === 'dark';
+        
+        console.log('Toggling theme. Current:', isDark ? 'dark' : 'light');
         
         if (isDark) {
             body.removeAttribute('data-theme');
@@ -296,6 +301,8 @@ class ThemeManager {
             if (themeIcon) themeIcon.className = 'fas fa-sun';
             localStorage.setItem('theme', 'dark');
         }
+        
+        console.log('Theme changed to:', isDark ? 'light' : 'dark');
     }
 }
 
@@ -321,8 +328,23 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     
     window.toggleTheme = function() {
-        window.themeManager.toggleTheme();
+        console.log('Global toggleTheme called');
+        if (window.themeManager) {
+            window.themeManager.toggleTheme();
+        } else {
+            console.error('ThemeManager not initialized');
+        }
     };
+    
+    // Ensure theme toggle works
+    const themeBtn = document.getElementById('themeToggle');
+    if (themeBtn) {
+        themeBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('Theme button clicked');
+            window.toggleTheme();
+        });
+    }
     
     // Newsletter form handler
     const newsletterForm = document.querySelector('.newsletter-form');
