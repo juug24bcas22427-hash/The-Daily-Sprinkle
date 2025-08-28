@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Daily Sprinkle</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <span class="logo-text">The Daily Sprinkle</span>
+      </a>
+      
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#" onclick="showTab('home')" class="nav-link active">Latest</a></li>
+        <li><a href="#" onclick="showTab('india')" class="nav-link">India</a></li>
+        <li><a href="#" onclick="showTab('world')" class="nav-link">World</a></li>
+        <li><a href="#" onclick="showTab('business')" class="nav-link">Business</a></li>
+        <li><a href="#" onclick="showTab('technology')" class="nav-link">Technology</a></li>
+        <li><a href="#" onclick="showTab('sports')" class="nav-link">Sports</a></li>
+        <li><a href="#" onclick="showTab('entertainment')" class="nav-link">Entertainment</a></li>
+      </ul>
+
+      <div class="nav-controls">
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">
+          <i class="fas fa-moon" id="themeIcon"></i>
+        </button>
+        
+        <button class="mobile-toggle" id="mobileToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <h1 class="hero-title">The Daily Sprinkle</h1>
+      <p class="hero-subtitle">Your premier destination for breaking news and global insights</p>
+      <button class="cta-button" onclick="scrollToContent()">
+        <span>Explore Stories</span>
+        <i class="fas fa-arrow-down"></i>
+      </button>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="main-content" id="mainContent">
+    <div class="container">
+      <!-- Category Tabs -->
+      <div class="category-section">
+        <div class="category-tabs" id="categoryTabs">
+          <button class="tab-btn active" onclick="showTab('home')" data-tab="home">Latest</button>
+          <button class="tab-btn" onclick="showTab('india')" data-tab="india">India</button>
+          <button class="tab-btn" onclick="showTab('world')" data-tab="world">World</button>
+          <button class="tab-btn" onclick="showTab('business')" data-tab="business">Business</button>
+          <button class="tab-btn" onclick="showTab('technology')" data-tab="technology">Technology</button>
+          <button class="tab-btn" onclick="showTab('sports')" data-tab="sports">Sports</button>
+          <button class="tab-btn" onclick="showTab('entertainment')" data-tab="entertainment">Entertainment</button>
+        </div>
+      </div>
+
+      <div class="content-grid">
+        <!-- News Content -->
+        <div class="news-section">
+          <!-- Home Tab -->
+          <div id="home" class="tab-content active">
+            <div class="news-grid">
+              <article class="news-card featured">
+                <div class="card-image">
+                  <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&h=400&fit=crop&q=80" alt="Climate Summit" loading="lazy">
+                  <div class="card-overlay">
+                    <span class="category-badge breaking">Breaking</span>
+                  </div>
+                </div>
+                <div class="card-content">
+                  <h2 class="card-title">Global Climate Summit Reaches Historic Agreement</h2>
+                  <p class="card-excerpt">World leaders unite on ambitious climate targets as breakthrough negotiations conclude with unprecedented cooperation across nations, setting new standards for environmental policy.</p>
+                  <div class="card-meta">
+                    <div class="meta-info">
+                      <span class="time"><i class="fas fa-clock"></i> 2 hours ago</span>
+                      <span class="author">By Sarah Johnson</span>
+                    </div>
+                    <div class="audio-player">
+                      <button class="play-btn" onclick="toggleAudio('audio1')">
+                        <i class="fas fa-play" id="icon-audio1"></i>
+                      </button>
+                      <audio id="audio1" preload="none">
+                        <source src="audio1.mp3" type="audio/mpeg">
+                      </audio>
+                      <span class="audio-label">Listen</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="news-card">
+                <div class="card-image">
+                  <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=300&fit=crop&q=80" alt="AI Technology" loading="lazy">
+                  <div class="card-overlay">
+                    <span class="category-badge tech">Technology</span>
+                  </div>
+                </div>
+                <div class="card-content">
+                  <h3 class="card-title">Revolutionary AI Breakthrough Transforms Healthcare</h3>
+                  <p class="card-excerpt">Scientists unveil groundbreaking artificial intelligence system that promises to revolutionize medical diagnosis and treatment protocols worldwide.</p>
+                  <div class="card-meta">
+                    <div class="meta-info">
+                      <span class="time"><i class="fas fa-clock"></i> 4 hours ago</span>
+                      <span class="author">By Dr. Michael Chen</span>
+                    </div>
+                    <div class="audio-player">
+                      <button class="play-btn" onclick="toggleAudio('audio2')">
+                        <i class="fas fa-play" id="icon-audio2"></i>
+                      </button>
+                      <audio id="audio2" preload="none">
+                        <source src="audio2.mp3" type="audio/mpeg">
+                      </audio>
+                      <span class="audio-label">Listen</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="news-card">
+                <div class="card-image">
+                  <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&h=300&fit=crop&q=80" alt="Market News" loading="lazy">
+                  <div class="card-overlay">
+                    <span class="category-badge business">Business</span>
+                  </div>
+                </div>
+                <div class="card-content">
+                  <h3 class="card-title">Global Markets Surge on Economic Optimism</h3>
+                  <p class="card-excerpt">International markets experience significant gains as economic indicators reveal stronger than expected growth across major economies.</p>
+                  <div class="card-meta">
+                    <div class="meta-info">
+                      <span class="time"><i class="fas fa-clock"></i> 6 hours ago</span>
+                      <span class="author">By Emma Rodriguez</span>
+                    </div>
+                    <div class="audio-player">
+                      <button class="play-btn" onclick="toggleAudio('audio3')">
+                        <i class="fas fa-play" id="icon-audio3"></i>
+                      </button>
+                      <audio id="audio3" preload="none">
+                        <source src="audio3.mp3" type="audio/mpeg">
+                      </audio>
+                      <span class="audio-label">Listen</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <!-- Other Tabs -->
+          <div id="india" class="tab-content">
+            <div class="news-grid">
+              <article class="news-card">
+                <div class="card-image">
+                  <img src="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=600&h=300&fit=crop&q=80" alt="India Space" loading="lazy">
+                  <div class="card-overlay">
+                    <span class="category-badge india">India</span>
+                  </div>
+                </div>
+                <div class="card-content">
+                  <h3 class="card-title">India Launches Ambitious Space Mission to Mars</h3>
+                  <p class="card-excerpt">ISRO successfully launches next-generation satellite constellation, marking a new era in space technology and interplanetary exploration.</p>
+                  <div class="card-meta">
+                    <div class="meta-info">
+                      <span class="time"><i class="fas fa-clock"></i> 3 hours ago</span>
+                      <span class="author">By Raj Patel</span>
+                    </div>
+                    <div class="audio-player">
+                      <button class="play-btn" onclick="toggleAudio('audio4')">
+                        <i class="fas fa-play" id="icon-audio4"></i>
+                      </button>
+                      <audio id="audio4" preload="none">
+                        <source src="audio4.mp3" type="audio/mpeg">
+                      </audio>
+                      <span class="audio-label">Listen</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div id="world" class="tab-content">
+            <div class="news-grid">
+              <article class="news-card">
+                <div class="card-image">
+                  <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=300&fit=crop&q=80" alt="World Peace" loading="lazy">
+                  <div class="card-overlay">
+                    <span class="category-badge world">World</span>
+                  </div>
+                </div>
+                <div class="card-content">
+                  <h3 class="card-title">International Peace Talks Show Promising Results</h3>
+                  <p class="card-excerpt">Diplomatic breakthrough emerges as world leaders commit to comprehensive peace framework addressing ongoing global conflicts.</p>
+                  <div class="card-meta">
+                    <div class="meta-info">
+                      <span class="time"><i class="fas fa-clock"></i> 5 hours ago</span>
+                      <span class="author">By James Wilson</span>
+                    </div>
+                    <div class="audio-player">
+                      <button class="play-btn" onclick="toggleAudio('audio5')">
+                        <i class="fas fa-play" id="icon-audio5"></i>
+                      </button>
+                      <audio id="audio5" preload="none">
+                        <source src="audio5.mp3" type="audio/mpeg">
+                      </audio>
+                      <span class="audio-label">Listen</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div id="business" class="tab-content">
+            <div class="news-grid">
+              <article class="news-card">
+                <div class="card-image">
+                  <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=600&h=300&fit=crop&q=80" alt="Tech Earnings" loading="lazy">
+                  <div class="card-overlay">
+                    <span class="category-badge business">Business</span>
+                  </div>
+                </div>
+                <div class="card-content">
+                  <h3 class="card-title">Tech Giants Report Record-Breaking Earnings</h3>
+                  <p class="card-excerpt">Major technology companies exceed market expectations with unprecedented quarterly results, driving massive innovation investments.</p>
+                  <div class="card-meta">
+                    <div class="meta-info">
+                      <span class="time"><i class="fas fa-clock"></i> 1 hour ago</span>
+                      <span class="author">By Lisa Chang</span>
+                    </div>
+                    <div class="audio-player">
+                      <button class="play-btn" onclick="toggleAudio('audio6')">
+                        <i class="fas fa-play" id="icon-audio6"></i>
+                      </button>
+                      <audio id="audio6" preload="none">
+                        <source src="audio6.mp3" type="audio/mpeg">
+                      </audio>
+                      <span class="audio-label">Listen</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div id="technology" class="tab-content">
+            <div class="news-grid">
+              <article class="news-card">
+                <div class="card-image">
+                  <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&h=300&fit=crop&q=80" alt="Quantum Computing" loading="lazy">
+                  <div class="card-overlay">
+                    <span class="category-badge tech">Technology</span>
+                  </div>
+                </div>
+                <div class="card-content">
+                  <h3 class="card-title">Quantum Computing Achieves Major Milestone</h3>
+                  <p class="card-excerpt">Researchers achieve quantum supremacy breakthrough, opening doors to revolutionary computing capabilities and scientific applications.</p>
+                  <div class="card-meta">
+                    <div class="meta-info">
+                      <span class="time"><i class="fas fa-clock"></i> 7 hours ago</span>
+                      <span class="author">By Dr. Alan Kumar</span>
+                    </div>
+                    <div class="audio-player">
+                      <button class="play-btn" onclick="toggleAudio('audio7')">
+                        <i class="fas fa-play" id="icon-audio7"></i>
+                      </button>
+                      <audio id="audio7" preload="none">
+                        <source src="audio7.mp3" type="audio/mpeg">
+                      </audio>
+                      <span class="audio-label">Listen</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div id="sports" class="tab-content">
+            <div class="news-grid">
+              <article class="news-card">
+                <div class="card-image">
+                  <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&h=300&fit=crop&q=80" alt="Championship" loading="lazy">
+                  <div class="card-overlay">
+                    <span class="category-badge sports">Sports</span>
+                  </div>
+                </div>
+                <div class="card-content">
+                  <h3 class="card-title">Championship Finals Deliver Thrilling Performances</h3>
+                  <p class="card-excerpt">Historic sporting event captivates global audience as athletes deliver extraordinary performances in the most watched competition.</p>
+                  <div class="card-meta">
+                    <div class="meta-info">
+                      <span class="time"><i class="fas fa-clock"></i> 8 hours ago</span>
+                      <span class="author">By Mark Thompson</span>
+                    </div>
+                    <div class="audio-player">
+                      <button class="play-btn" onclick="toggleAudio('audio8')">
+                        <i class="fas fa-play" id="icon-audio8"></i>
+                      </button>
+                      <audio id="audio8" preload="none">
+                        <source src="audio8.mp3" type="audio/mpeg">
+                      </audio>
+                      <span class="audio-label">Listen</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div id="entertainment" class="tab-content">
+            <div class="news-grid">
+              <article class="news-card">
+                <div class="card-image">
+                  <img src="https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=600&h=300&fit=crop&q=80" alt="Streaming" loading="lazy">
+                  <div class="card-overlay">
+                    <span class="category-badge entertainment">Entertainment</span>
+                  </div>
+                </div>
+                <div class="card-content">
+                  <h3 class="card-title">Streaming Platforms Announce Blockbuster Lineup</h3>
+                  <p class="card-excerpt">Major entertainment platforms reveal unprecedented content slate as competition intensifies for global viewer attention and market dominance.</p>
+                  <div class="card-meta">
+                    <div class="meta-info">
+                      <span class="time"><i class="fas fa-clock"></i> 12 hours ago</span>
+                      <span class="author">By Sofia Martinez</span>
+                    </div>
+                    <div class="audio-player">
+                      <button class="play-btn" onclick="toggleAudio('audio9')">
+                        <i class="fas fa-play" id="icon-audio9"></i>
+                      </button>
+                      <audio id="audio9" preload="none">
+                        <source src="audio9.mp3" type="audio/mpeg">
+                      </audio>
+                      <span class="audio-label">Listen</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+          <!-- Trending Stories -->
+          <div class="sidebar-card trending-card">
+            <h3 class="sidebar-title">
+              <i class="fas fa-fire"></i>
+              Trending Now
+            </h3>
+            <div class="trending-stories">
+              <div class="trending-item">
+                <div class="trending-image">
+                  <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=80&h=80&fit=crop&q=80" alt="Trending" loading="lazy">
+                </div>
+                <div class="trending-content">
+                  <h4>Climate Summit Historic Agreement</h4>
+                  <span class="trending-time">2 hours ago</span>
+                </div>
+              </div>
+              <div class="trending-item">
+                <div class="trending-image">
+                  <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=80&h=80&fit=crop&q=80" alt="Trending" loading="lazy">
+                </div>
+                <div class="trending-content">
+                  <h4>AI Healthcare Revolution</h4>
+                  <span class="trending-time">4 hours ago</span>
+                </div>
+              </div>
+              <div class="trending-item">
+                <div class="trending-image">
+                  <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=80&h=80&fit=crop&q=80" alt="Trending" loading="lazy">
+                </div>
+                <div class="trending-content">
+                  <h4>Global Markets Surge</h4>
+                  <span class="trending-time">6 hours ago</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Newsletter -->
+          <div class="sidebar-card newsletter-card">
+            <div class="newsletter-content">
+              <div class="newsletter-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <h3>Stay Informed</h3>
+              <p>Get breaking news and exclusive insights delivered to your inbox</p>
+              <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+                <div class="input-group">
+                  <input type="email" placeholder="Enter your email" required>
+                  <button type="submit">
+                    <i class="fas fa-arrow-right"></i>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Weather Widget -->
+          <div class="sidebar-card weather-card">
+            <h3 class="sidebar-title">
+              <i class="fas fa-cloud-sun"></i>
+              Weather
+            </h3>
+            <div class="weather-content">
+              <div class="weather-main">
+                <div class="weather-temp">24°C</div>
+                <div class="weather-desc">Partly Cloudy</div>
+              </div>
+              <div class="weather-location">New York, NY</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>The Daily Sprinkle</h4>
+        <p>Your trusted source for breaking news, in-depth analysis, and global perspectives from around the world.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-link" title="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-link" title="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Advertise</a>
+      </div>
+      <div class="footer-section">
+        <h4>Categories</h4>
+        <a href="#">Breaking News</a>
+        <a href="#">Politics</a>
+        <a href="#">Technology</a>
+        <a href="#">Sports</a>
+        <a href="#">Entertainment</a>
+      </div>
+      <div class="footer-section">
+        <h4>Support</h4>
+        <a href="#">Help Center</a>
+        <a href="#">Careers</a>
+        <a href="#">Press Kit</a>
+        <a href="#">Newsroom</a>
+        <a href="#">RSS Feeds</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 The Daily Sprinkle. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script src="mobile.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
