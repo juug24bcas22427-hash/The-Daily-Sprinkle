@@ -188,6 +188,7 @@ class ThemeManager {
     toggleTheme() {
         const body = document.body;
         const themeIcon = document.getElementById('themeIcon');
+        const themeToggle = document.getElementById('themeToggle');
         const isDark = body.getAttribute('data-theme') === 'dark';
         
         if (isDark) {
@@ -198,6 +199,20 @@ class ThemeManager {
             body.setAttribute('data-theme', 'dark');
             if (themeIcon) themeIcon.className = 'fas fa-sun';
             localStorage.setItem('theme', 'dark');
+        }
+
+        // MODIFICATION: Added animations from script.js
+        if (typeof anime === 'function' && themeToggle) {
+             anime({
+                targets: themeToggle,
+                rotate: '1turn',
+                duration: 600,
+                easing: 'easeOutExpo'
+            });
+        }
+        
+        if (typeof showNotification === 'function') {
+            showNotification(`Switched to ${isDark ? 'light' : 'dark'} mode`, 'success');
         }
     }
 }
@@ -210,7 +225,7 @@ document.addEventListener('DOMContentLoaded', function() {
     window.themeManager = new ThemeManager();
     
     // Global functions for backward compatibility
-    // NOTE: `toggleAudio` and `toggleTheme` are now handled by script.js and the ThemeManager class directly
+    // NOTE: `toggleAudio` is handled by script.js. `toggleTheme` is now handled by the ThemeManager class directly.
     // We keep showTab here to ensure the mobile menu closes when a tab is selected from it.
     window.showTab = function(tabId) {
         // This function is defined globally in script.js, but we can override or extend it

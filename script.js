@@ -13,7 +13,7 @@ const themeIcon = document.getElementById('themeIcon');
 document.addEventListener('DOMContentLoaded', function() {
     initializeAnimations();
     initializeNavigation();
-    initializeTheme();
+    // MODIFICATION: Removed call to initializeTheme()
     initializeScrollEffects();
     initializeIntersectionObserver();
 });
@@ -359,48 +359,8 @@ function toggleAudio(audioId) {
     };
 }
 
-// Theme Functions
-function initializeTheme() {
-    // Load saved theme
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        document.body.setAttribute('data-theme', 'dark');
-        themeIcon.className = 'fas fa-sun';
-    }
-}
-
-function toggleTheme() {
-    const body = document.body;
-    const isDark = body.getAttribute('data-theme') === 'dark';
-    
-    if (isDark) {
-        body.removeAttribute('data-theme');
-        themeIcon.className = 'fas fa-moon';
-        localStorage.setItem('theme', 'light');
-    } else {
-        body.setAttribute('data-theme', 'dark');
-        themeIcon.className = 'fas fa-sun';
-        localStorage.setItem('theme', 'dark');
-    }
-    
-    // Animate theme toggle
-    anime({
-        targets: themeToggle,
-        rotate: '1turn',
-        duration: 600,
-        easing: 'easeOutExpo'
-    });
-    
-    // Animate theme transition
-    anime({
-        targets: 'body',
-        duration: 300,
-        easing: 'easeOutExpo',
-        complete: () => {
-            showNotification(`Switched to ${isDark ? 'light' : 'dark'} mode`, 'success');
-        }
-    });
-}
+// MODIFICATION: Removed the initializeTheme() and toggleTheme() functions
+// The ThemeManager class in mobile.js now handles this logic.
 
 // Utility Functions
 function scrollToContent() {
@@ -577,4 +537,4 @@ style.textContent = `
         gap: 0.5rem;
     }
 `;
-document.head.appendChild(style);
+document.head.appendChild(style);s

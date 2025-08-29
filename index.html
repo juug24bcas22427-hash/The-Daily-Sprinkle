@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Navigation -->
   <nav class="navbar" id="navbar">
     <div class="nav-container">
       <a href="#" class="logo">
@@ -27,7 +26,7 @@
       </ul>
 
       <div class="nav-controls">
-        <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">
+        <button class="theme-toggle" id="themeToggle">
           <i class="fas fa-moon" id="themeIcon"></i>
         </button>
         
@@ -40,7 +39,6 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
   <section class="hero" id="hero">
     <div class="hero-bg">
       <div class="hero-overlay"></div>
@@ -58,10 +56,8 @@
     </div>
   </section>
 
-  <!-- Main Content -->
   <main class="main-content" id="mainContent">
     <div class="container">
-      <!-- Category Tabs -->
       <div class="category-section">
         <div class="category-tabs" id="categoryTabs">
           <button class="tab-btn active" onclick="showTab('home')" data-tab="home">Latest</button>
@@ -75,9 +71,7 @@
       </div>
 
       <div class="content-grid">
-        <!-- News Content -->
         <div class="news-section">
-          <!-- Home Tab -->
           <div id="home" class="tab-content active">
             <div class="news-grid">
               <article class="news-card featured">
@@ -166,7 +160,6 @@
             </div>
           </div>
 
-          <!-- Other Tabs -->
           <div id="india" class="tab-content">
             <div class="news-grid">
               <article class="news-card">
@@ -203,7 +196,7 @@
             <div class="news-grid">
               <article class="news-card">
                 <div class="card-image">
-                  <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=300&fit=crop&q=80" alt="World Peace" loading="lazy">
+                  <img src="https://images.unsplash.com/photo-1557804506-669a6userId-965ba0?w=600&h=300&fit=crop&q=80" alt="World Peace" loading="lazy">
                   <div class="card-overlay">
                     <span class="category-badge world">World</span>
                   </div>
@@ -360,9 +353,7 @@
           </div>
         </div>
 
-        <!-- Sidebar -->
         <aside class="sidebar">
-          <!-- Trending Stories -->
           <div class="sidebar-card trending-card">
             <h3 class="sidebar-title">
               <i class="fas fa-fire"></i>
@@ -399,7 +390,6 @@
             </div>
           </div>
 
-          <!-- Newsletter -->
           <div class="sidebar-card newsletter-card">
             <div class="newsletter-content">
               <div class="newsletter-icon">
@@ -418,7 +408,6 @@
             </div>
           </div>
 
-          <!-- Weather Widget -->
           <div class="sidebar-card weather-card">
             <h3 class="sidebar-title">
               <i class="fas fa-cloud-sun"></i>
@@ -437,7 +426,6 @@
     </div>
   </main>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-section">
@@ -481,7 +469,6 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
   <script src="mobile.js"></script>
