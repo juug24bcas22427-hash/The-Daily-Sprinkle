@@ -160,106 +160,6 @@ class TabManager {
     }
 }
 
-// Audio Player
-class AudioManager {
-    constructor() {
-        this.currentAudio = null;
-        this.init();
-    }
-
-    init() {
-        // Add click listeners to all play buttons
-        document.querySelectorAll('.play-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const audioId = btn.getAttribute('onclick')?.match(/toggleAudio\('(.+?)'\)/)?.[1];
-                if (audioId) {
-                    this.toggleAudio(audioId);
-                }
-            });
-        });
-    }
-
-    toggleAudio(audioId) {
-        const audio = document.getElementById(audioId);
-        const icon = document.getElementById('icon-' + audioId);
-        const button = icon?.parentElement;
-
-        if (!audio || !icon || !button) return;
-
-        // Stop current audio if different
-        if (this.currentAudio && this.currentAudio !== audio) {
-            this.stopCurrentAudio();
-        }
-
-        if (audio.paused) {
-            this.playAudio(audio, icon, button);
-        } else {
-            this.pauseAudio(audio, icon, button);
-        }
-    }
-
-    playAudio(audio, icon, button) {
-        audio.play().catch(e => {
-            console.log('Audio play failed:', e);
-            this.showNotification('Audio file not found', 'error');
-        });
-        
-        icon.classList.replace('fa-play', 'fa-pause');
-        button.classList.add('playing');
-        this.currentAudio = audio;
-        
-        audio.onended = () => {
-            this.pauseAudio(audio, icon, button);
-        };
-    }
-
-    pauseAudio(audio, icon, button) {
-        audio.pause();
-        icon.classList.replace('fa-pause', 'fa-play');
-        button.classList.remove('playing');
-        this.currentAudio = null;
-    }
-
-    stopCurrentAudio() {
-        if (this.currentAudio) {
-            const currentButton = document.querySelector('.play-btn.playing');
-            const currentIcon = document.querySelector('.play-btn.playing i');
-            
-            this.currentAudio.pause();
-            this.currentAudio.currentTime = 0;
-            
-            if (currentButton) currentButton.classList.remove('playing');
-            if (currentIcon) currentIcon.classList.replace('fa-pause', 'fa-play');
-            
-            this.currentAudio = null;
-        }
-    }
-
-    showNotification(message, type) {
-        const notification = document.createElement('div');
-        notification.className = `notification ${type}`;
-        notification.textContent = message;
-        notification.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: ${type === 'error' ? '#ef4444' : '#10b981'};
-            color: white;
-            padding: 1rem;
-            border-radius: 8px;
-            z-index: 10000;
-            animation: slideIn 0.3s ease;
-        `;
-        
-        document.body.appendChild(notification);
-        
-        setTimeout(() => {
-            notification.remove();
-        }, 3000);
-    }
-}
-
 // Theme Manager
 class ThemeManager {
     constructor() {
@@ -290,8 +190,6 @@ class ThemeManager {
         const themeIcon = document.getElementById('themeIcon');
         const isDark = body.getAttribute('data-theme') === 'dark';
         
-        console.log('Toggling theme. Current:', isDark ? 'dark' : 'light');
-        
         if (isDark) {
             body.removeAttribute('data-theme');
             if (themeIcon) themeIcon.className = 'fas fa-moon';
@@ -301,8 +199,6 @@ class ThemeManager {
             if (themeIcon) themeIcon.className = 'fas fa-sun';
             localStorage.setItem('theme', 'dark');
         }
-        
-        console.log('Theme changed to:', isDark ? 'light' : 'dark');
     }
 }
 
@@ -311,51 +207,41 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize all managers
     window.mobileNav = new MobileNavigation();
     window.tabManager = new TabManager();
-    window.audioManager = new AudioManager();
     window.themeManager = new ThemeManager();
     
     // Global functions for backward compatibility
+    // NOTE: `toggleAudio` and `toggleTheme` are now handled by script.js and the ThemeManager class directly
+    // We keep showTab here to ensure the mobile menu closes when a tab is selected from it.
     window.showTab = function(tabId) {
-        window.tabManager.showTab(tabId);
+        // This function is defined globally in script.js, but we can override or extend it
+        // For now, we'll let the original onclick attributes handle it.
+        // We add this to ensure the mobile menu closes properly.
+        const mainShowTab = window.showTab; // This will point to the one in script.js if loaded
+        if (typeof mainShowTab === 'function') {
+           // mainShowTab(tabId); // This call is redundant because of onclick in HTML
+        } else {
+            // Fallback if script.js hasn't defined it, though it should have
+            window.tabManager.showTab(tabId);
+        }
+        
         // Close mobile menu if open
         if (window.mobileNav && window.mobileNav.isOpen) {
             window.mobileNav.closeMenu();
         }
     };
-    
-    window.toggleAudio = function(audioId) {
-        window.audioManager.toggleAudio(audioId);
-    };
-    
-    window.toggleTheme = function() {
-        console.log('Global toggleTheme called');
-        if (window.themeManager) {
-            window.themeManager.toggleTheme();
-        } else {
-            console.error('ThemeManager not initialized');
-        }
-    };
-    
-    // Ensure theme toggle works
-    const themeBtn = document.getElementById('themeToggle');
-    if (themeBtn) {
-        themeBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            console.log('Theme button clicked');
-            window.toggleTheme();
-        });
-    }
-    
+
     // Newsletter form handler
     const newsletterForm = document.querySelector('.newsletter-form');
     if (newsletterForm) {
         newsletterForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = this.querySelector('input[type="email"]').value;
-            if (email) {
-                window.audioManager.showNotification('Successfully subscribed!', 'success');
-                this.reset();
-            }
+            // This is also handled in script.js, we can remove it to avoid redundancy
+            // e.preventDefault();
+            // const email = this.querySelector('input[type="email"]').value;
+            // if (email) {
+            //     // You would have a global notification function to call here
+            //     console.log('Successfully subscribed!');
+            //     this.reset();
+            // }
         });
     }
     
@@ -371,17 +257,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-
-// Add CSS animations
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideIn {
-        from { transform: translateX(100%); opacity: 0; }
-        to { transform: translateX(0); opacity: 1; }
-    }
-    
-    .notification {
-        animation: slideIn 0.3s ease;
-    }
-`;
-document.head.appendChild(style);
