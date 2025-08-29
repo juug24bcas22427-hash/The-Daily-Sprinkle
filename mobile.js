@@ -224,26 +224,9 @@ document.addEventListener('DOMContentLoaded', function() {
     window.tabManager = new TabManager();
     window.themeManager = new ThemeManager();
     
-    // Global functions for backward compatibility
-    // NOTE: `toggleAudio` is handled by script.js. `toggleTheme` is now handled by the ThemeManager class directly.
-    // We keep showTab here to ensure the mobile menu closes when a tab is selected from it.
-    window.showTab = function(tabId) {
-        // This function is defined globally in script.js, but we can override or extend it
-        // For now, we'll let the original onclick attributes handle it.
-        // We add this to ensure the mobile menu closes properly.
-        const mainShowTab = window.showTab; // This will point to the one in script.js if loaded
-        if (typeof mainShowTab === 'function') {
-           // mainShowTab(tabId); // This call is redundant because of onclick in HTML
-        } else {
-            // Fallback if script.js hasn't defined it, though it should have
-            window.tabManager.showTab(tabId);
-        }
-        
-        // Close mobile menu if open
-        if (window.mobileNav && window.mobileNav.isOpen) {
-            window.mobileNav.closeMenu();
-        }
-    };
+    // The problematic global `showTab` function override has been removed.
+    // The original `showTab` from script.js will now be used, which works correctly
+    // and already includes the logic to close the mobile navigation menu.
 
     // Newsletter form handler
     const newsletterForm = document.querySelector('.newsletter-form');
